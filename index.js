@@ -47,7 +47,40 @@ app.route("/")
             }
         })
     })
-
+app.route("/:id")
+    .get((req,res)=>{
+        const query  = `select * from coins where id = ${req.params.id}`
+        pool.query(query,(err,data)=>{
+            if(!err){
+                res.send(data.rows)
+            }else(
+                res.status(500).send()
+            )
+        })
+    })
+    .delete((req,res)=>{
+        const query  = `delete from coins where id = ${req.params.id}`
+        pool.query(query,(err,data)=>{
+            if(!err){
+                res.send(data.rows)
+            }else(
+                res.status(500).send()
+            )
+        })
+    })
+    .put((req, res) => {
+        const query = `UPDATE category
+        SET texth1 = '${req.body.texth1}'
+        WHERE id = ${req.params.id};
+        `
+        connection.query(query, (err, data) => {
+            if (err) {
+                res.status(500).send()
+            } else {
+                res.send(data.rows)
+            }
+        })
+    })
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
