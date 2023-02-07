@@ -38,27 +38,12 @@ app.route("/")
         const price = req.body.price
         const link1 = req.body.link1
         const link2 = req.body.link2
-        const query = 
-        `insert into coins
-                (texth1,text,country,composition,denomination,quality,year,weight,price,link1,link2)
-         values
-        (${texth1},
-        '${text}',
-        '${country}'),
-        '${composition}'),
-        '${denomination}'),
-        '${quality}'),
-        '${year}'),
-        '${weight}'),
-        '${price}'),
-        '${link1}'),
-        '${link2}'),
-        `
+        const query = `insert into coins(texth1,text,country,composition,denomination,quality,year,weight,price,link1,link2)values('${texth1}','${text}','${country}','${composition}','${denomination}','${quality}',${year},'${weight}','${price}','${link1}','${link2}')`
         pool.query(query, (err, data) => {
             if (!err) {
                 res.send(data.rows);
             } else {
-                res.status(500).send()
+                res.status(500).send("error")
             }
         })
     })
