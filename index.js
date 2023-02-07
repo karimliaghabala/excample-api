@@ -18,7 +18,7 @@ const pool = new Pool({
 
 app.route("/")
     .get((req, res) => {
-        pool.query('SELECT * FROM excample', (err, data) => {
+        pool.query('SELECT * FROM coins', (err, data) => {
             if (!err) {
                 res.send(data.rows);
             } else {
@@ -27,10 +27,33 @@ app.route("/")
         });
     })
     .post((req, res) => {
-        const categoryId = req.body
-        const categoryName = req.body
-        const categorySurname = req.body
-        const query = `insert into excample (id,name,surname) values(${categoryId.id},'${categoryName.name}','${categorySurname.surname}')`
+        const texth1 = req.body.texth1
+        const text = req.body.text
+        const country = req.body.country
+        const composition = req.body.composition
+        const denomination = req.body.denomination
+        const quality = req.body.quality
+        const year = req.body.year
+        const weight = req.body.weight
+        const price = req.body.price
+        const link1 = req.body.link1
+        const link2 = req.body.link2
+        const query = 
+        `insert into coins
+                (texth1,text,country,composition,denomination,quality,year,weight,price,link1,link2)
+         values
+        (${texth1},
+        '${text}',
+        '${country}'),
+        '${composition}'),
+        '${denomination}'),
+        '${quality}'),
+        '${year}'),
+        '${weight}'),
+        '${price}'),
+        '${link1}'),
+        '${link2}'),
+        `
         pool.query(query, (err, data) => {
             if (!err) {
                 res.send(data.rows);
