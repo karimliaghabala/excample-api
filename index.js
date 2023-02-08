@@ -28,6 +28,7 @@ app.route("/")
     })
     .post((req, res) => {
         const texth1 = req.body.texth1
+        const textshort = req.body.textshort
         const text = req.body.text
         const country = req.body.country
         const composition = req.body.composition
@@ -38,7 +39,7 @@ app.route("/")
         const price = req.body.price
         const link1 = req.body.link1
         const link2 = req.body.link2
-        const query = `insert into coins(texth1,text,country,composition,denomination,quality,year,weight,price,link1,link2)values('${texth1}','${text}','${country}','${composition}','${denomination}','${quality}',${year},'${weight}','${price}','${link1}','${link2}')`
+        const query = `insert into coins(texth1,text,country,composition,denomination,quality,year,weight,price,link1,link2,textshort)values('${texth1}','${text}','${country}','${composition}','${denomination}','${quality}',${year},'${weight}','${price}','${link1}','${link2}','${textshort}')`
         pool.query(query, (err, data) => {
             if (!err) {
                 res.send(data.rows);
