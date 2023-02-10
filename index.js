@@ -71,7 +71,7 @@ app.route("/:id")
         })
     })
     .put((req, res) => {
-        const query = `UPDATE category
+        const query = `UPDATE coins
         SET texth1 = '${req.body.texth1}'
         WHERE id = ${req.params.id};
         `
