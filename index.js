@@ -30,6 +30,7 @@ app.route("/")
         const texth1 = req.body.texth1
         const textshort = req.body.textshort
         const text = req.body.text
+        const typeCoins = req.body.typeCoins
         const country = req.body.country
         const composition = req.body.composition
         const denomination = req.body.denomination
@@ -39,7 +40,7 @@ app.route("/")
         const price = req.body.price
         const link1 = req.body.link1
         const link2 = req.body.link2
-        const query = `insert into coins(texth1,text,country,composition,denomination,quality,year,weight,price,link1,link2,textshort)values('${texth1}','${text}','${country}','${composition}','${denomination}','${quality}',${year},'${weight}','${price}','${link1}','${link2}','${textshort}')`
+        const query = `insert into coins(typeCoins,texth1,text,country,composition,denomination,quality,year,weight,price,link1,link2,textshort)values('${typeCoins}','${texth1}','${text}','${country}','${composition}','${denomination}','${quality}',${year},'${weight}','${price}','${link1}','${link2}','${textshort}')`
         pool.query(query, (err, data) => {
             if (!err) {
                 res.send(data.rows);
@@ -48,7 +49,7 @@ app.route("/")
             }
         })
     })
-app.route("/:id")
+app.route("/:texth1")
     .get((req,res)=>{
         const query  = `select * from coins where id = ${req.params.id}`
         pool.query(query,(err,data)=>{
