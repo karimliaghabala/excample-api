@@ -11,7 +11,7 @@ const pool = new Pool({
     user: 'agabala93',
     host: 'db.bit.io',
     database: 'agabala93/coinHistory',
-    password: 'v2_3yrfR_t6LUuSXj4iLferuCpFy5EHb',
+    password: 'v2_3yyCR_CCPAYMtceynq57mNzFvYGZJ',
     port: 5432,
     ssl: true,
 });
