@@ -49,7 +49,7 @@ app.route("/")
             }
         })
     })
-app.route("/:texth1")
+app.route("/:id")
     .get((req,res)=>{
         const query  = `select * from coins where id = ${req.params.id}`
         pool.query(query,(err,data)=>{
