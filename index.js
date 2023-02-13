@@ -86,8 +86,8 @@ app.route("/:id")
 
 app.route("/search")
     .get((req, res) => {
-        const query = req.query.q;
-        const items = `select * from coins where texth1 = ${req.params.q}`
+        const query = req.query.texth1;
+        const items = `select * from coins where texth1 = ${req.params.texth1}`
         const results = items.filter(item => item.texth1.toLowerCase().includes(query.toLowerCase()));
         res.send(results);
     });
