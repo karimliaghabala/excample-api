@@ -86,10 +86,12 @@ app.route("/:id")
 
 app.route("/search")
     .get((req, res) => {
-        const query = req.query.texth1;
-        const items = `select * from coins where texth1 = ${req.params.texth1}`
-        const results = items.filter(item => item.texth1.toLowerCase().includes(query.toLowerCase()));
-        res.send(results);
+        const query = req.query.q;
+        const sql = `SELECT * FROM coins WHERE texth1 LIKE '%${query}%'`
+        pool.query(sql, (error, results) => {
+            if (error) throw error;
+            res.send(results);
+          });
     });
 
 const PORT = process.env.PORT || 3000       
