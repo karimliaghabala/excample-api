@@ -87,7 +87,7 @@ app.route("/:id")
 app.route("/search")
     .get((req, res) => {
         const query = req.query.q;
-        const sql = `SELECT * FROM coins WHERE texth1 LIKE '%${query}%'`
+        const sql = `SELECT * FROM coins WHERE texth1 LIKE '%${query}'`
         pool.query(sql, (error, results) => {
             if (error) throw error;
             res.send(results);
