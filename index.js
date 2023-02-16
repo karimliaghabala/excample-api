@@ -8,17 +8,17 @@ app.use(cors())
 
 
 const pool = new Pool({
-    user: 'cografiyaelm',
+    user: 'agabala93',
     host: 'db.bit.io',
-    database: 'cografiyaelm/portalnews',
-    password: 'v2_3zCwM_tNTGTZjKmuEHtsTbBZjHfs3',
+    database: 'agabala93/coinHistory',
+    password: 'v2_3yyCR_CCPAYMtceynq57mNzFvYGZJ',
     port: 5432,
     ssl: true,
 });
 
 app.route("/")
     .get((req, res) => {
-        pool.query('SELECT * FROM news', (err, data) => {
+        pool.query('SELECT * FROM coins', (err, data) => {
             if (!err) {
                 res.send(data.rows);
             } else {
@@ -27,11 +27,20 @@ app.route("/")
         });
     })
     .post((req, res) => {
-        const title = req.body.title
-        const author = req.body.author
-        const content = req.body.content
-
-        const query = `insert into coins(title,author,content)values('${title}','${author}','${content}')`
+        const texth1 = req.body.texth1
+        const textshort = req.body.textshort
+        const text = req.body.text
+        const typeCoins = req.body.typeCoins
+        const country = req.body.country
+        const composition = req.body.composition
+        const denomination = req.body.denomination
+        const quality = req.body.quality
+        const year = req.body.year
+        const weight = req.body.weight
+        const price = req.body.price
+        const link1 = req.body.link1
+        const link2 = req.body.link2
+        const query = `insert into coins(typeCoins,texth1,text,country,composition,denomination,quality,year,weight,price,link1,link2,textshort)values('${typeCoins}','${texth1}','${text}','${country}','${composition}','${denomination}','${quality}',${year},'${weight}','${price}','${link1}','${link2}','${textshort}')`
         pool.query(query, (err, data) => {
             if (!err) {
                 res.send(data.rows);
@@ -42,7 +51,7 @@ app.route("/")
     })
 app.route("/:id")
     .get((req, res) => {
-        const query = `select * from news where id = ${req.params.id}`
+        const query = `select * from coins where id = ${req.params.id}`
         pool.query(query, (err, data) => {
             if (!err) {
                 res.send(data.rows)
@@ -52,7 +61,7 @@ app.route("/:id")
         })
     })
     .delete((req, res) => {
-        const query = `delete from news where id = ${req.params.id}`
+        const query = `delete from coins where id = ${req.params.id}`
         pool.query(query, (err, data) => {
             if (!err) {
                 res.send(data.rows)
@@ -62,7 +71,7 @@ app.route("/:id")
         })
     })
     .put((req, res) => {
-        const query = `UPDATE news
+        const query = `UPDATE coins
         SET texth1 = '${req.body.texth1}'
         WHERE id = ${req.params.id};
         `
@@ -78,7 +87,7 @@ app.route("/:id")
 app.route("/search")
     .get((req, res) => {
         const query = req.query.q;
-        const sql = `SELECT * FROM news WHERE texth1 LIKE '%${query}%'`
+        const sql = `SELECT * FROM coins WHERE texth1 LIKE '%${query}%'`
         pool.query(sql, (error, results) => {
             if (error) throw error;
             res.send(results);
